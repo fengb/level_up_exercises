@@ -1,9 +1,10 @@
-# Killer facts about triangles AWW YEAH
 class Triangle
 	attr_accessor :side1, :side2, :side3
 
 	def initialize(side1, side2, side3)
-		@side1, @side2, @side3 = side1, side2, side3
+		@side1 = side1
+		@side2 = side2
+		@side3 = side3
 	end
 
 	def equilateral
@@ -33,19 +34,19 @@ class Triangle
 	def type_facts
 		case
 		when equilateral
-			puts 'This triangle is equilateral!'
+			puts "This triangle is equilateral!"
 		when isosceles
-			puts 'This triangle is isosceles! Also, that word is hard to type.'
+			puts "This triangle is isosceles! Also, that word is hard to type."
 		when scalene
-			puts 'This triangle is scalene and mathematically boring.'
+			puts "This triangle is scalene and mathematically boring."
 		end
 	end
 
 	def angle_facts
 		angles = calculate_angles(side1, side2, side3)
-		puts 'The angles of this triangle are ' + angles.join(',')
+		puts "The angles of this triangle are " + angles.join(',')
 		if angles.include?(90)
-			puts 'This triangle is also a right triangle!'
+			puts "This triangle is also a right triangle!"
 		end
 	end
 
