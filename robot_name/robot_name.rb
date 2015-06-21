@@ -23,6 +23,19 @@ class Robot
   end
 end
 
+module NameGenerator
+  def letter_randomizer
+    ("A".."Z").to_a.sample
+  end
+
+  def generate_name(letters, numbers)
+    name = []
+    letters.times { name << letter_randomizer }
+    numbers.times { name << rand(10) }
+    name.join
+  end
+end
+
 robot = Robot.new
 puts "My pet robot's name is #{robot.name}, but we usually call him sparky."
 
