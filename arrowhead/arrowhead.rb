@@ -14,7 +14,7 @@ class Arrowhead
     },
   }
 
-  def self.shapes_by_region(region)
+  def self.find_shapes(region)
     if CLASSIFICATIONS.include? region
       CLASSIFICATIONS[region]
     else
@@ -22,15 +22,20 @@ class Arrowhead
     end
   end
 
-  def self.classify(region, shape)
-    shapes = shapes_by_region(region)
+  def self.find_arrowhead(region, shape)
+    shapes = find_shapes(region)
     if shapes.include?(shape)
-      arrowhead = shapes[shape]
-      "You have a(n) '#{arrowhead}' arrowhead.  Probably priceless"
+      shapes[shape]
     else
-      raise "Unknown shape value. Are you sure you know what you're talking about?"
+      raise "Unknown shape value, please provide a valid shape."
     end
   end
+
+  def self.classify(region, shape)
+    arrowhead = find_arrowhead(region, shape)
+    "You have a(n) '#{arrowhead}' arrowhead.  Probably priceless."
+  end
+
 end
 
 puts Arrowhead.classify(:northern_plains, :bifurcated)
