@@ -36,6 +36,14 @@ module NameGenerator
   end
 end
 
+module CustomValidations
+  def robot_name_validator(name)
+    if !(name =~ /[[:alpha:]]{2}[[:digit:]]{3}/) || @@registry.include?(name)
+      raise NameCollisionError, 'There was a problem generating the robot name!'
+    end
+  end
+end
+
 robot = Robot.new
 puts "My pet robot's name is #{robot.name}, but we usually call him sparky."
 
