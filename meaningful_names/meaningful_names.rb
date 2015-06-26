@@ -1,4 +1,4 @@
-# Here's a terrible method!
+# Here's a terrible method! I DIDNT WRITE IT!!!
 def find_random_local_songs
     random_songs = []
     if current_users_around.empty?
