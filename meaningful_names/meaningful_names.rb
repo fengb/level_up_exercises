@@ -31,9 +31,9 @@ def find_random_local_songs
   songs
 end
 
-def build_local_playlist(num_of_songs)
+def build_local_playlist
   unless no_nearby_users?
-    @playlist << num_of_songs.times do { find_random_local_songs }
+    @playlist << 3.times do { find_random_local_songs }
   end
   @playlist.uniq!
 end
