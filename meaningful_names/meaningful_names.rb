@@ -17,7 +17,7 @@ def find_random_local_songs
     end
 
 # Here's a refactor!
-def no_nearby_users?
+def no_nearby_users!
   if current_users_around.empty?
     raise "Sorry! No users around right now!"
   end
@@ -32,8 +32,8 @@ def find_random_local_songs
 end
 
 def build_local_playlist
-  unless no_nearby_users?
-    @playlist << 3.times do { find_random_local_songs }
+  unless no_nearby_users!
+    @playlist += 3.times do { find_random_local_songs }
   end
   @playlist.uniq!
 end
