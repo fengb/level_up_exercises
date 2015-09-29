@@ -25,13 +25,13 @@ class Triangle
 		end
 	end
 
-	
-	def calculate_angles(a, b, c)
-		angleA = radians_to_degrees(Math.acos((b**2 + c**2 - a**2) / (2.0 * b * c)))
-		angleB = radians_to_degrees(Math.acos((a**2 + c**2 - b**2) / (2.0 * a * c)))
-		angleC = radians_to_degrees(Math.acos((a**2 + b**2 - c**2) / (2.0 * a * b)))
 
-		[angleA, angleB, angleC]
+	def calculate_angles(a, b, c)
+		angle_a = radians_to_degrees(Math.acos((b**2 + c**2 - a**2) / (2.0 * b * c)))
+		angle_b = radians_to_degrees(Math.acos((a**2 + c**2 - b**2) / (2.0 * a * c)))
+		angle_c = radians_to_degrees(Math.acos((a**2 + b**2 - c**2) / (2.0 * a * b)))
+
+		[angle_a, angle_b, angle_c]
 	end
 
 	def radians_to_degrees(rads)
@@ -39,11 +39,11 @@ class Triangle
 	end
 
 	private
-	def equilateral
+	def equilateral?
 		side1 == side2 && side2 == side3
 	end
 
-	def isosceles
+	def isosceles?
 		[side1, side2, side3].uniq.length == 2
 	end
 
@@ -63,7 +63,7 @@ triangles = [
 	[5, 12, 13],
 ]
 
-triangles.each { |sides|
+triangles.each do sides
 	tri = Triangle.new(*sides)
 	tri.recite_facts
-}
+end
