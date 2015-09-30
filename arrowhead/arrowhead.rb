@@ -1,4 +1,3 @@
-  # This seriously belongs in a database.
   CLASSIFICATIONS = {
     far_west: {
       notched: "Archaic Side Notch",
@@ -19,17 +18,16 @@ class Arrowhead
 
   attr_reader :shape, :region_info
 
-  # FIXME: I don't have time to deal with this.
   def self.classify(region, shape)
     if CLASSIFICATIONS.include? region
       region_info = CLASSIFICATIONS[region]
-      self.exists?(region_info, shape)
+      self.exists(region_info, shape)
     else
       raise "Unknown region, please provide a valid region."
     end
   end
 
-  def self.exists?(region_info, shape)
+  def self.exists(region_info, shape)
     if region_info.include? shape
       arrowhead = region_info[shape]
       "You have a(n) '#{arrowhead}' arrowhead. Probably priceless."
@@ -41,3 +39,5 @@ class Arrowhead
 end
 
 puts Arrowhead.classify(:northern_plains, :bifurcated)
+#Error Test
+puts Arrowhead.classify(:far_west, :triangle)
