@@ -1,18 +1,17 @@
-  CLASSIFICATIONS = {
-    far_west: {
-      notched: "Archaic Side Notch",
-      stemmed: "Archaic Stemmed",
-      lanceolate: "Agate Basin",
-      bifurcated: "Cody",
-    },
-    northern_plains: {
-      notched: "Besant",
-      stemmed: "Archaic Stemmed",
-      lanceolate: "Humboldt Constricted Base",
-      bifurcated: "Oxbow",
-    },
-  }
-
+CLASSIFICATIONS = {
+  far_west: {
+    notched: "Archaic Side Notch",
+    stemmed: "Archaic Stemmed",
+    lanceolate: "Agate Basin",
+    bifurcated: "Cody",
+  },
+  northern_plains: {
+    notched: "Besant",
+    stemmed: "Archaic Stemmed",
+    lanceolate: "Humboldt Constricted Base",
+    bifurcated: "Oxbow",
+  },
+}
 
 class Arrowhead
 
@@ -21,7 +20,7 @@ class Arrowhead
   def self.classify(region, shape)
     if CLASSIFICATIONS.include? region
       region_info = CLASSIFICATIONS[region]
-      self.exists(region_info, shape)
+      exists(region_info, shape)
     else
       raise "Unknown region, please provide a valid region."
     end
@@ -35,9 +34,8 @@ class Arrowhead
       raise "Unknown shape value. Are you sure you know what you're talking about?"
     end
   end
-
 end
 
 puts Arrowhead.classify(:northern_plains, :bifurcated)
-#Error Test
+# Error Test
 puts Arrowhead.classify(:far_west, :triangle)
