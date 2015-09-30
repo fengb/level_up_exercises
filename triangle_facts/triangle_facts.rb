@@ -1,4 +1,3 @@
-# Killer facts about triangles AWW YEAH
 class Triangle
 
 	attr_accessor :side1, :side2, :side3
@@ -14,13 +13,13 @@ class Triangle
 		angles = self.calculate_angles(side1, side2, side3)
 		puts "The angles of this triangle are #{angles.join(', ')}"
 		case
-		when equilateral
+		when equilateral?
 			puts "This triangle is equilateral!"
-		when isosceles
+		when isosceles?
 			puts "This triangle is isosceles! Also, that word is hard to type."
-		when scalene
+		when scalene?
 			puts "This triangle is scalene and mathematically boring."
-		when angles.include?(90)
+		when right?
 			puts "This triangle is also a right triangle!"
 		end
 	end
@@ -39,6 +38,10 @@ class Triangle
 	end
 
 	private
+	def right?
+		angles.include?(90)
+	end
+
 	def equilateral?
 		side1 == side2 && side2 == side3
 	end
@@ -47,12 +50,8 @@ class Triangle
 		[side1, side2, side3].uniq.length == 2
 	end
 
-	def scalene
-		if (equilateral || isosceles)
-	    true
-	  else
-	    false
-	  end
+	def scalene?
+		!(equilateral? || isosceles?)
 	end
 
 end
@@ -63,7 +62,7 @@ triangles = [
 	[5, 12, 13],
 ]
 
-triangles.each do sides
+triangles.each do |sides|
 	tri = Triangle.new(*sides)
 	tri.recite_facts
 end
