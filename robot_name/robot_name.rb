@@ -4,9 +4,7 @@ class InvalidNameError < RuntimeError; end
 
 class Robot
 
-
   attr_accessor :name
-
 
   def initialize(args = {})
     @@registry ||= []
@@ -28,7 +26,7 @@ class Robot
   def check_registry
     if @@registry.include?(name)
       raise NameCollisionError, 'There was a problem generating the robot name!'
-    elsif (@custom_name !~ /[[:alpha:]]{2}[[:digit:]]{3}/)
+    elsif @custom_name !~ /[[:alpha:]]{2}[[:digit:]]{3}/
       raise InvalidNameError, 'This name is not in the right format!'
     else
       add_to_registry
