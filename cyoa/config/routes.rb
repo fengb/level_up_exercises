@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   get '/' => 'users#index'
 
   resources :users, only: [:index, :create]
@@ -7,5 +6,5 @@ Rails.application.routes.draw do
   delete '/logout' => 'users#logout'
   post '/games' => 'games#create'
   get '/games/:game_id/results' => 'games#results'
-  resources :rounds, only: [:show, :update]
+  resources :rounds, only: [:index, :update]
 end
