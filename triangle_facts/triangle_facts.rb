@@ -5,9 +5,9 @@ class Triangle
     @side1,@side2,@side3 = side1,side2,side3
   end
 
-	def equilateral?
-		side1 == side2 && side2 == side3
-	end
+  def equilateral?
+    side1 == side2 && side2 == side3
+  end
 
 	def isosceles?
 		[side1,side2,side3].uniq.length == 2
@@ -29,11 +29,12 @@ class Triangle
     angles = []
     angle_list.each {|key,value| angles << (value = radians_to_degrees(Math.acos((value[0]**2 + value[1]**2 - value[2]**2) / (2.0 * value[3] * value[4]))))}
     [angles[0],angles[1],angles[2]]
-	end
+  end
 
-	def radians_to_degrees(rads)
-		(rads * 180 / Math::PI).round
-	end	
+  def radians_to_degrees(rads)
+    (rads * 180 / Math::PI).round
+  end	
+
 end
 
 
