@@ -5,7 +5,7 @@ class Robot
     if args[:name_generator]
       @name = args[:name_generator]
     else
-      generate_char = Array.new(2) { ('A'..'Z').to_a.sample }.join
+      generate_char = Array.new(2) { ("A".."Z").to_a.sample }.join
       generate_num =  Array.new(3) { rand(10) }.join
       @name = "#{generate_char}#{generate_num}"
     end
@@ -13,7 +13,7 @@ class Robot
 
   def check_error
     unless @name =~ /[[:alpha:]]{2}[[:digit:]]{3}/
-      raise 'There was a problem generating the robot name!'
+      raise "There was a problem generating the robot name!"
     end
   end
 end
