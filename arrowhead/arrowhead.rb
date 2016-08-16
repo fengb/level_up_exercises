@@ -1,4 +1,4 @@
-require 'yaml'
+require "yaml"
 class Arrowhead
   def initialize(classification_hash)
     @classification = classification_hash
@@ -23,7 +23,7 @@ class Arrowhead
   end
 end
 
-hash = YAML.load_file('constant.yml')
+hash = YAML.load_file("constant.yml")
 arrowhead = Arrowhead.new(hash)
 p arrowhead.classify_region("northern_plains", "bifurcated")
 # data = YAML.load_file("yaml.rb")
