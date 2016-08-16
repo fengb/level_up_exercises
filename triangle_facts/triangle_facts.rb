@@ -31,7 +31,7 @@ class Triangle
   end
 
   def state_facts
-    p 'The angles of this triangle are ' + angles(@angle_list).join(",")
+    p "The angles of this triangle are #{angles(@angle_list).join(',')}"
     if angles(@angle_list).include? 90
       p 'This triangle is also a right triangle!'
     end
