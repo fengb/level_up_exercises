@@ -9,15 +9,15 @@ class Triangle
     side1 == side2 && side2 == side3
   end
 
-	def isosceles?
-		[side1,side2,side3].uniq.length == 2
-	end
+  def isosceles?
+    [side1,side2,side3].uniq.length == 2
+  end
 
   def scalene?
     (equilateral? || isosceles?) ? false : true 
   end
 
-  def recite_facts
+  def recipe_facts
     triangle_facts = {equilateral? => "This triangle is equilateral", isosceles? =>"This triangle is isosceles! Also, that word is hard to type." , scalene? =>'This triangle is scalene and mathematically boring.'}
     triangle_facts.each {|key,value| puts value if key} 		
     puts 'The angles of this triangle are ' + calculate_angles(side1,side2,side3).join(',')
