@@ -1,34 +1,31 @@
+require "yaml"
 class Arrowhead
-  # This seriously belongs in a database.
-  CLASSIFICATIONS = {
-    far_west: {
-      notched: "Archaic Side Notch",
-      stemmed: "Archaic Stemmed",
-      lanceolate: "Agate Basin",
-      bifurcated: "Cody",
-    },
-    northern_plains: {
-      notched: "Besant",
-      stemmed: "Archaic Stemmed",
-      lanceolate: "Humboldt Constricted Base",
-      bifurcated: "Oxbow",
-    },
-  }
+  def initialize(classification_hash)
+    @classification = classification_hash
+  end
 
-  # FIXME: I don't have time to deal with this.
-  def self.classify(region, shape)
-    if CLASSIFICATIONS.include? region
-      shapes = CLASSIFICATIONS[region]
-      if shapes.include? shape
-        arrowhead = shapes[shape]
-        "You have a(n) '#{arrowhead}' arrowhead. Probably priceless."
-      else
-        raise "Unknown shape value. Are you sure you know what you're talking about?"
-      end
+  def classify_region(region, type)
+    if @classification.include? region
+      shapes = @classification[region]
+      classify_arrowhead(shapes, type)
     else
       raise "Unknown region, please provide a valid region."
     end
   end
+
+  def classify_arrowhead(shapes, type)
+    if shapes.include? type
+      arrowhead = shapes[type]
+      "You have a(n) '#{arrowhead}' arrowhead. Probably priceless."
+    else
+      raise "Unknown shape value. Do you know what you're talking about?"
+    end
+  end
 end
 
-puts Arrowhead.classify(:northern_plains, :bifurcated)
+hash = YAML.load_file("constant.yml")
+arrowhead = Arrowhead.new(hash)
+p arrowhead.classify_region("northern_plains", "bifurcated")
+# data = YAML.load_file("yaml.rb")
+# p data
+# p arrowhead.classify_region(YAML.load_file("yaml.rb"))
