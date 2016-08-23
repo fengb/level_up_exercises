@@ -8,19 +8,11 @@ class Parser
     JSON.parse(file)
   end
 
-  def group_a
-    group_a = []
+  def separate_groups(cohort)
+    group = []
     json_parse.each do |hash|
-      group_a << hash if hash["cohort"] == "A"
+      group << hash if hash["cohort"] == cohort
     end
-    group_a
-  end
-
-  def group_b
-    group_b = []
-    json_parse.each do |hash|
-      group_b << hash if hash["cohort"] == "B"
-    end
-    group_b
+    group
   end
 end
