@@ -5,29 +5,24 @@ class Arrowhead
       notched: "Archaic Side Notch",
       stemmed: "Archaic Stemmed",
       lanceolate: "Agate Basin",
-      bifurcated: "Cody",
+      bifurcated: "Cody"
     },
     northern_plains: {
       notched: "Besant",
       stemmed: "Archaic Stemmed",
       lanceolate: "Humboldt Constricted Base",
-      bifurcated: "Oxbow",
-    },
-  }
+      bifurcated: "Oxbow"
+    }
+  }.freeze
 
-  # FIXME: I don't have time to deal with this.
   def self.classify(region, shape)
-    if CLASSIFICATIONS.include? region
-      shapes = CLASSIFICATIONS[region]
-      if shapes.include? shape
-        arrowhead = shapes[shape]
-        "You have a(n) '#{arrowhead}' arrowhead. Probably priceless."
-      else
-        raise "Unknown shape value. Are you sure you know what you're talking about?"
-      end
-    else
-      raise "Unknown region, please provide a valid region."
-    end
+    shapes = CLASSIFICATIONS[region]
+    wrong_region = "Unknown region, please provide a valid region."
+    raise wrong_region unless CLASSIFICATIONS.include? region
+    arrowhead = shapes[shape]
+    wrong_shape = "Unknown shape value."
+    raise wrong_shape unless shapes.include? shape
+    "You have a(n) '#{arrowhead}' arrowhead. Probably priceless."
   end
 end
 
