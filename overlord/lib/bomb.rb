@@ -1,3 +1,4 @@
+# rubocop:disable LineLength
 require_relative "wire_bundle"
 
 class Bomb
@@ -6,7 +7,7 @@ class Bomb
 
   def initialize(activation_code, deactivation_code, max_failed_deactivations = 3)
     @state = :inactive
-    @activation_code = activation_code.to_s
+    @activation_code = activation_code.to_s || "1234"
     @deactivation_code = deactivation_code.to_s
     @max_failed_deactivations = max_failed_deactivations
     @wires = WireBundle.new(0, 0)
@@ -14,6 +15,10 @@ class Bomb
 
   def active?
     state == :active
+  end
+
+  def status_indicator
+    p "The bomb is #{@state}."
   end
 
   def disarmed?

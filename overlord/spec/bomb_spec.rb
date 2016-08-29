@@ -16,6 +16,10 @@ describe Bomb do
       expect(bomb).to be_inactive
     end
 
+    it "accepts only numeric activation codes" do
+      expect(activation_code.to_i).to be > 0
+    end
+
     it "defaults the max number of failed deactivations to 3" do
       expect(bomb.max_failed_deactivations).to eq(3)
     end
@@ -52,6 +56,12 @@ describe Bomb do
         end
       end
 
+      context "when entering correct activation code more than once" do
+        let(:code) { activation_code }
+
+        it { is_expected.to be_active }
+      end
+
       context "when entering the deactivation code" do
         let(:code) { deactivation_code }
 
@@ -71,9 +81,25 @@ describe Bomb do
       include_examples "code entering"
 
       context "when entering the deactivation code" do
-        let(:code) { deactivation_code }
+        context "when deactivated" do
+          it "is inactive" do
+            bomb.enter_code(deactivation_code)
+            expect(bomb.inactive?).to be(true)
+          end
+        end
 
-        it { is_expected.to be_inactive }
+        context "when indicating the stauts of the bomb" do
+          it "states the bomb is inactive" do
+            bomb.enter_code(deactivation_code)
+            expect(bomb.status_indicator).to match("The bomb is inactive.")
+          end
+        end
+      end
+
+      context "when indicating the status of the bomb" do
+        it "states that it is active" do
+          expect(bomb.status_indicator).to match("The bomb is active.")
+        end
       end
 
       context "when entering the activation code" do
@@ -112,6 +138,13 @@ describe Bomb do
             end
 
             expect(bomb).to be_exploded
+          end
+
+          it "tells the user the bomb has been exploded" do
+            bomb.max_failed_deactivations.times do
+              bomb.enter_code(bad_code)
+            end
+            expect(bomb.status_indicator).to match("The bomb is exploded.")
           end
         end
       end
