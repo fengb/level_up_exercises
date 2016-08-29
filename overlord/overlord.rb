@@ -34,7 +34,7 @@ post '/deactivate' do
     @message = "Oh no!! THE BOMB HAS EXPLODED!"
     @count = 0
     @state = "exploded"
-    erb :""
+    erb :'bombs/edit'
   end
   redirect '/'
 end
