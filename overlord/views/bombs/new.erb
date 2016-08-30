@@ -9,23 +9,25 @@
 </form>
 
 <h3> Deactivate the bomb here </h3>
-<form method = 'post' action = '/deactivate'>
+<form class = "deactivation_form" method = 'post' action = '/deactivate'>
   <div class="form-element">
     <label for = 'deactivation_code'> Deactivation code</label>
-    <input type = 'text' name = 'deactivation_code'>
+    <input class = 'deactivation_code' type = 'text' name = 'deactivation_code'>
+    <button>Deactivate</button>
   </div>
 </form>
 
 <h3>Activate the bomb with your activation code below.</h3>
-<form method = 'post' action = '/activate'>
+<form class = "activation_form" method = 'post' action = '/activate'>
   <div class="form-element">
     <label for = 'activation_code'> Activation code</label>
-    <input type = 'text' name = 'activation_code'>
+    <input class = 'activation_code' type = 'text' name = 'activation_code'>
+    <button>Activate</button>
   </div>
 </form>
 
 <h3>Additional Bomb Information: </h3>
-<h3>Bomb status: <%=@state%></h3>
+<h3>Bomb status: <%=bomb.state%></h3>
 <h3><%=@message%></h3>
 
 
