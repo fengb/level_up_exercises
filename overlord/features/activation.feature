@@ -3,6 +3,9 @@ Feature: Bomb activation
     When first boot up
     Then the status should be 'inactive'
 
+    When first boot up
+    Then the bomb state should be 'inactive'
+
   Scenario: Activation code should be configurable
     Given the bomb is 'inactive'
     When changing the activation code to '3245'
@@ -12,11 +15,21 @@ Feature: Bomb activation
     When activating with '1234'
     Then the status should be 'active'
 
+    When activating with '1234'
+    Then the bomb state should be 'active'
+
   Scenario: Bomb errors on bad values
     When activating with '0000'
     Then the status should be 'inactive'
+
+    When activating with '0000'
+    Then the bomb state should be 'inactive'
 
   Scenario: Bomb stays activated when code is resubmitted
     When activating with '1234'
     When activating with '1234'
     Then the status should be 'active'
+
+    When activating with '1234'
+    When activating with '1234'
+    Then the bomb state should be 'active'

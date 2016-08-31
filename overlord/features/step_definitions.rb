@@ -3,16 +3,20 @@ When "first boot up" do
 end
 
 Then "the activation code should be '$code'" do |code|
-  expect(MyBombApp.reconfigure(code, code).activation_code).to eq(code)
+  expect(MyBombApp.bomb.activation_code).to eq(code)
 end
 
 Then "the deactivation code should be '$code'" do |code|
-  expect(MyBombApp.reconfigure(code, code).deactivation_code).to eq(code)
+  expect(MyBombApp.bomb.deactivation_code).to eq(code)
 end
 
 Then "the status should be '$status'" do |expected_status|
   visit '/'
   expect(page).to have_content "Bomb status: #{expected_status}"
+end
+
+Then "the bomb state should be '$state'" do |expected_state|
+  expect(MyBombApp.bomb.state.to_s).to eq(expected_state)
 end
 
 When "activating with '$code'" do |code|

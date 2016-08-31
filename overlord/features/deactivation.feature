@@ -4,17 +4,35 @@ Feature: Bomb deactivation
      When deactivating with '0000'
      Then the status should be 'inactive'
 
+     Given the bomb is 'active'
+     When deactivating with '0000'
+     Then the bomb state should be 'inactive'
+
   Scenario: Bomb errors on bad value
     Given the bomb is 'active'
     When deactivating with '9999'
     Then the status should be 'active'
 
+    Given the bomb is 'active'
+    When deactivating with '9999'
+    Then the bomb state should be 'active'
+
   Scenario: Bomb explodes on bad value submitted thrice
     Given the bomb is 'active'
     When deactivating with '9999'
+    Then the status should be 'active'
     When deactivating with '9999'
+    Then the status should be 'active'
     When deactivating with '9999'
     Then the status should be 'exploded'
+
+    Given the bomb is 'active'
+    When deactivating with '9999'
+    Then the bomb state should be 'active'
+    When deactivating with '9999'
+    Then the bomb state should be 'active'
+    When deactivating with '9999'
+    Then the bomb state should be 'exploded'
 
   Scenario: Deactivation code should be configurable
    Given the bomb is 'inactive'

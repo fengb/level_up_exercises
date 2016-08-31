@@ -17,7 +17,7 @@ class MyBombApp < Sinatra::Base
   end
 
   def self.reconfigure(activation, deactivation)
-    Bomb.new(activation, deactivation)
+    @bomb = Bomb.new(activation, deactivation)
   end
 
   get '/' do
