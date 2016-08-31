@@ -15,3 +15,8 @@ Feature: Bomb deactivation
     When deactivating with '9999'
     When deactivating with '9999'
     Then the status should be 'exploded'
+
+  Scenario: Deactivation code should be configurable
+   Given the bomb is 'inactive'
+   When changing the deactivation code to '8912'
+   Then the deactivation code should be '8912'
