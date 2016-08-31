@@ -38,3 +38,6 @@ DEPENDENCIES
   rspec
   simplecov
   sinatra
+
+BUNDLED WITH
+   1.12.4

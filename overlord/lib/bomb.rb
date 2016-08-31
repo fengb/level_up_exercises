@@ -1,7 +1,8 @@
+# rubocop:disable LineLength
 require_relative "wire_bundle"
 
 class Bomb
-  attr_accessor :timer, :wires
+  attr_accessor :timer, :wires, :state, :count, :activation_code, :deactivation_code
   attr_reader :error, :failed_deactivations, :max_failed_deactivations
 
   def initialize(activation_code, deactivation_code, max_failed_deactivations = 3)
@@ -10,6 +11,7 @@ class Bomb
     @deactivation_code = deactivation_code.to_s
     @max_failed_deactivations = max_failed_deactivations
     @wires = WireBundle.new(0, 0)
+    @count = 0
   end
 
   def active?

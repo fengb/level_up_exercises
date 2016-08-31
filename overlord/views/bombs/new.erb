@@ -1,0 +1,33 @@
+
+<h3> Are you a creepy villain? Boot up your bomb here: </h3>
+<form class= 'configuration' method = 'post' action = '/new'>
+  <label for = 'activation_config'>Activation code </label>
+  <input class = 'activation_config' type= 'text' name = 'activation_config'>
+  <label for = 'deactivation_config'>Deactivation Code:</label>
+  <input class = 'deactivation_config' type = 'text' name = 'deactivation_config'>
+  <button>Boot Up!</button>
+</form>
+
+<h3> Deactivate the bomb here </h3>
+<form class = "deactivation_form" method = 'post' action = '/update'>
+  <div class="form-element">
+    <label for = 'deactivation_code'> Deactivation code</label>
+    <input class = 'deactivation_code' type = 'text' name = 'deactivation_code'>
+    <button>Deactivate</button>
+  </div>
+</form>
+
+<h3>Activate the bomb with your activation code below.</h3>
+<form class = "activation_form" method = 'post' action = '/update'>
+  <div class="form-element">
+    <label for = 'activation_code'> Activation code</label>
+    <input class = 'activation_code' type = 'text' name = 'activation_code'>
+    <button>Activate</button>
+  </div>
+</form>
+
+<h3>Additional Bomb Information: </h3>
+<h3>Bomb status: <%=bomb.state%></h3>
+<h3><%=@message%></h3>
+
+

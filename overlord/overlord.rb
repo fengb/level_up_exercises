@@ -1,14 +1,48 @@
-# run `ruby overlord.rb` to run a webserver for this app
-
 require 'sinatra'
+require 'sinatra/base'
+require 'sinatra/contrib'
+require_relative 'lib/bomb'
 
-enable :sessions
+class MyBombApp < Sinatra::Base
+  enable :sessions
 
-get '/' do
-  "Time to build an app around here. Start time: " + start_time
-end
+  def self.reset!
+    @bomb = Bomb.new("1234", "0000")
+  end
 
-# we can shove stuff into the session cookie YAY!
-def start_time
-  session[:start_time] ||= (Time.now).to_s
+  reset!
+
+  class << self
+    attr_reader :bomb
+  end
+
+  def self.reconfigure(activation, deactivation)
+    @bomb = Bomb.new(activation, deactivation)
+  end
+
+  get '/' do
+    erb :'bombs/new', locals: { bomb: MyBombApp.bomb }
+  end
+
+  post '/new' do
+    activation = params[:activation_config]
+    deactivation = params[:deactivation_config]
+    if activation =~ /^[0-9]*$/ && deactivation =~ /^[0-9]*$/
+      MyBombApp.reconfigure(activation, deactivation)
+    else
+      @message = "Sorry, the code can only contain numbers."
+    end
+    redirect '/'
+  end
+
+  post '/update' do
+    @attempt = params[:deactivation_code] || params[:activation_code]
+    MyBombApp.bomb.enter_code(@attempt)
+    redirect '/'
+  end
+
+  # we can shove stuff into the session cookie YAY!
+  def start_time
+    session[:start_time] ||= Time.now.to_s
+  end
 end
