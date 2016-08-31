@@ -10,9 +10,9 @@ Then "the deactivation code should be '$code'" do |code|
   expect(MyBombApp.bomb.deactivation_code).to eq(code)
 end
 
-Then "the status should be '$status'" do |expected_status|
+Then "the website should display '$string'" do |string|
   visit '/'
-  expect(page).to have_content "Bomb status: #{expected_status}"
+  expect(page).to have_content string.to_s
 end
 
 Then "the bomb state should be '$state'" do |expected_state|
@@ -56,9 +56,16 @@ When "changing the deactivation code to '$code'" do |code|
 end
 
 Given(/^the bomb is 'active'$/) do
+  MyBombApp.reset!
   MyBombApp.bomb.send :activate
 end
 
 Given(/^the bomb is 'inactive'$/) do
+  MyBombApp.reset!
   MyBombApp.bomb.send :deactivate
+end
+
+Given(/^the bomb is 'exploded'$/) do
+  MyBombApp.reset!
+  MyBombApp.bomb.send :explode
 end
