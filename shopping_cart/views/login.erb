@@ -1,0 +1,17 @@
+<h1> Hello! Welcome to this incredible application!</h1>
+
+<h2> Here are some amazing items you could add to your cart: </h2>
+<% @items.each do |item| %>
+  <a href = "#{ item['link']}" ><%= item['name'] %></a>
+<%end%>
+
+
+<h2> Currently, you have these items in your cart: </h2>
+<%@current_items.each do |item| %>
+<a href = "facebook.com"> Add </a> <%= item %>
+<br>
+<br>
+<%end%>
+
+
+<h1><a href= "coupons.com">Apply Your Coupons:</a></h1>
